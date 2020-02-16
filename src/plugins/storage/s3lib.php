@@ -2290,11 +2290,11 @@ final class S3Request
 			$query = substr($query, 0, -1);
 			$this->uri .= $query;
 
-			if (array_key_exists('acl', $this->parameters) ||
-			array_key_exists('location', $this->parameters) ||
-			array_key_exists('torrent', $this->parameters) ||
-			array_key_exists('website', $this->parameters) ||
-			array_key_exists('logging', $this->parameters))
+			if (property_exists($this->parameters, 'acl') ||
+			property_exists($this->parameters, 'location') ||
+			property_exists($this->parameters, 'torrent') ||
+			property_exists($this->parameters, 'website') ||
+			property_exists($this->parameters, 'logging'))
 				$this->resource .= $query;
 		}
 		$url = (S3::$useSSL ? 'https://' : 'http://') . ($this->headers['Host'] !== '' ? $this->headers['Host'] : $this->endpoint) . $this->uri;

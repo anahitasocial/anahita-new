@@ -83,7 +83,7 @@ class AnConfig implements AnConfigInterface
         if (is_array($config)) {
             if (!is_numeric(key($config))) {
                 foreach ($config as $key => $value) {
-                    if (array_key_exists($key, $this->_data)) {
+                    if (isset($this->_data[$key])) {
                         if (!empty($value) && ($this->_data[$key] instanceof AnConfig)) {
                             $this->_data[$key] = $this->_data[$key]->append($value);
                         }

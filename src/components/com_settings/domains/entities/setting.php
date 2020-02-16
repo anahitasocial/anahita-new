@@ -165,7 +165,7 @@ class ComSettingsDomainEntitySetting extends AnObject
     */
     public function __set($name, $value)
     {
-        if (array_key_exists($name, $this->_attributes)) {
+        if (property_exists($this->_attributes, $name)) {
 
             $strings = array(
               'sitename',

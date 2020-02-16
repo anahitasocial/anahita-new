@@ -181,7 +181,7 @@ class AnDomainAttributeProperty extends AnDomainPropertyAbstract implements AnDo
     {
         $key = $this->getColumn()->key();
         
-        return array_key_exists($key, $data);
+        return $column->name($data, $key);
     }
 
     /**

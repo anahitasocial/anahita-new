@@ -64,7 +64,7 @@ class ComSettingsDomainEntityTemplate extends AnObject
             $manifest = json_decode(file_get_contents($path['manifest']));
 
             foreach ($this->_attributes as $key => $value) {
-                if (array_key_exists($key, $manifest)) {
+                if (property_exists($manifest, $key)) {
                     $this->$key = $manifest->$key;
                 }
             }

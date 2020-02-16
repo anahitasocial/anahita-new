@@ -101,7 +101,7 @@ class ComApplicationTemplateFilterHtml extends LibBaseTemplateFilterAbstract imp
 
             $attribs = '';
             if (!empty($script['attribs'])) {
-                $attribs = implode($script['attribs'], ' ');
+                $attribs = implode(' ', $script['attribs']);
             }
 
             $string .= '<script type="'.$type.'" src="'.$src.'" '.$attribs.'></script>';

@@ -513,7 +513,7 @@ function mime_type($filename)
     );
 
     $ext = strtolower(array_pop(explode('.', $filename)));
-    if (array_key_exists($ext, $mime_types)) {
+    if (property_exists($mime_types, $ext)) {
         return $mime_types[$ext];
     } elseif (function_exists('finfo_open')) {
         $finfo = finfo_open(FILEINFO_MIME);
@@ -767,7 +767,7 @@ function clean_apc_with_prefix($prefix)
             $list = (array) $info['cache_list'];
             //delete all the entries with the prefix $key
             foreach ($list as $entry) {
-                if (array_key_exists('info', $entry) && strpos($entry['info'], $prefix) === 0) {
+                if (property_exists($entry, 'info') && strpos($entry['info'], $prefix) === 0) {
                     apcu_delete($entry['info']);
                 }
             }

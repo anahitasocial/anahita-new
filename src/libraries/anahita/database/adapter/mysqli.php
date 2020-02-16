@@ -600,7 +600,7 @@ class AnDatabaseAdapterMysqli extends AnDatabaseAdapterAbstract
                         $fields[$field->Column_name] = $field->Column_name;
                     }
 
-                    if (array_key_exists($column->name, $fields)) {
+                    if (property_exists($fields, $column->name)) {
                         unset($fields[$column->name]);
                         $column->related = array_values($fields);
 

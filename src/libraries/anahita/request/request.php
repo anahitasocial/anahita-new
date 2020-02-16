@@ -156,7 +156,7 @@ class AnRequest
         if (isset($GLOBALS['_'.$hash])) {
             $result = $GLOBALS['_'.$hash];
             foreach ($keys as $key) {
-                if (array_key_exists($key, $result)) {
+                if (property_exists($result, $key)) {
                     $result = $result[$key];
                 } else {
                     $result = null;
@@ -236,7 +236,7 @@ class AnRequest
         list($hash, $keys) = self::_parseIdentifier($identifier);
 
         foreach ($keys as $key) {
-            if (isset($GLOBALS['_'.$hash]) && array_key_exists($key, $GLOBALS['_'.$hash])) {
+            if (isset($GLOBALS['_'.$hash]) && property_exists($GLOBALS['_'.$hash], $key)) {
                 return true;
             }
         }

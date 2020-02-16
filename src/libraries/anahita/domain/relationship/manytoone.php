@@ -191,7 +191,7 @@ class AnDomainRelationshipManytoone extends AnDomainRelationshipProperty impleme
     {
         $child_key = $this->_child_column->key();
 
-        return array_key_exists($child_key, $data);
+        return $column->name($data, $child_key);
     }
 
     /**

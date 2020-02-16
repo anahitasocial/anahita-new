@@ -109,11 +109,11 @@ class AnFilterTimestamp extends AnFilterAbstract
      */
     protected function _arrayToDate($array)
     {
-        $date = array_key_exists('Y', $array) &&
+        $date = $child_key($array, 'Y') &&
                 trim($array['Y']) != '' &&
-                array_key_exists('m', $array) &&
+                property_exists($array, 'm') &&
                 trim($array['m']) != '' &&
-                array_key_exists('d', $array) &&
+                property_exists($array, 'd') &&
                 trim($array['d']) != '';
 
         if (! $date) {
@@ -133,16 +133,16 @@ class AnFilterTimestamp extends AnFilterAbstract
      */
     protected function _arrayToTime($array)
     {
-        $time = array_key_exists('H', $array) &&
+        $time = property_exists($array, 'H') &&
                 trim($array['H']) != '' &&
-                array_key_exists('i', $array) &&
+                property_exists($array, 'i') &&
                 trim($array['i']) != '';
 
         if (! $time) {
             return;
         }
 
-        $s = array_key_exists('s', $array) && trim($array['s']) != ''
+        $s = property_exists($array, 's') && trim($array['s']) != ''
            ? $array['s']
            : '00';
 

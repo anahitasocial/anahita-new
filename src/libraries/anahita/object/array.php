@@ -222,8 +222,7 @@ class AnObjectArray extends AnObject implements IteratorAggregate, ArrayAccess, 
      */
     public function __isset($key)
     {
-        // return array_key_exists($key, $this->_data);
-        return array_key_exists($this->__key($key), $this->_data);
+        return property_exists($this->_data, $this->__key($key));
     }
 
     /**

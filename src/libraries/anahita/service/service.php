@@ -235,7 +235,7 @@ class AnService implements AnServiceInterface
         
         $alias = (string) $identifier;
         
-        if (array_key_exists($alias, self::$_aliases)) {
+        if (isset(self::$_aliases[$alias])) {
             $identifier = self::$_aliases[$alias];
         }
 
@@ -363,7 +363,7 @@ class AnService implements AnServiceInterface
 
         //Load the class manually using the basepath
         if (self::get('anahita:loader')->loadClass($identifier->classname, $identifier->basepath)) {
-            if (array_key_exists('AnObjectServiceable', class_implements($identifier->classname))) {
+            if (isset(class_implements($identifier->classname)['AnObjectServiceable'])) {
                 //Create the configuration object
                 $config = new AnConfig(array_merge(self::getConfig($identifier), $config));
 
@@ -372,7 +372,7 @@ class AnService implements AnServiceInterface
                 $config->service_identifier = $identifier;
 
                 // If the class has an instantiate method call it
-                if (array_key_exists('AnServiceInstantiatable', class_implements($identifier->classname))) {
+                if (isset(class_implements($identifier->classname)['AnServiceInstantiatable'])) {
                     $result = call_user_func(array($identifier->classname, 'getInstance'), $config, self::getInstance());
                 } else {
                     $result = new $identifier->classname($config);
